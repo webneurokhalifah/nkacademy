@@ -1,0 +1,1379 @@
+:root{
+  --nka-yellow:#FFC727;
+  --nka-light-blue:#1EBBFF;
+  --nka-dark-blue:#003DCA;
+  --nka-purple:#3C2E82;
+  --text-dark:#1c2430;
+  --text-light:#5b6776;
+  --bg:#f6f8fc;
+  --card:#ffffff;
+  --shadow:0 12px 30px rgba(0,0,0,.08);
+  --radius:18px;
+  --radius-sm:12px;
+  --max:1200px;
+
+  /* Responsive spacing (layout only) */
+  --section-pad: clamp(64px, 6.2vw, 92px);
+  --grid-gap: clamp(14px, 2.1vw, 18px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text-dark);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+.section{padding:var(--section-pad) 0}
+
+/* Better anchor alignment under fixed nav */
+section[id]{scroll-margin-top:92px;}
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:999px;
+  background:rgba(30,187,255,.12);
+  color:var(--nka-dark-blue);
+  font-weight:700;font-size:.92rem;
+}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--nka-yellow);box-shadow:0 0 0 6px rgba(255,199,39,.25)}
+.h2{font-size:2.35rem;line-height:1.2;font-weight:800;color:var(--nka-purple)}
+.p{color:var(--text-light);font-size:1.03rem}
+.btn{
+  border:0;cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 22px;border-radius:999px;
+  font-weight:800;
+  transition:.22s transform,.22s filter,.22s background,.22s color;
+  user-select:none;
+}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn-primary{background:var(--nka-yellow);color:#241c54}
+.btn-primary:hover{filter:brightness(.98);transform:translateY(-2px)}
+.btn-dark{background:var(--nka-dark-blue);color:#fff}
+.btn-dark:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn-outline{background:transparent;border:2px solid rgba(255,255,255,.7);color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.kbd{font-size:.9rem;font-weight:800;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.14)}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;width:100%;
+  z-index:1000;
+  transition:.25s background,.25s box-shadow,.25s backdrop-filter;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(12px);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.nav-inner{height:78px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--nka-dark-blue)}
+.brand img{width:44px;height:44px;border-radius:10px;object-fit:contain;background:#fff}
+.brand span{letter-spacing:.2px}
+.links{display:flex;align-items:center;gap:22px}
+.links a{font-weight:700;color:var(--nka-dark-blue);opacity:.95;position:relative}
+.links a:hover{color:var(--nka-light-blue)}
+.links a:after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:0;background:var(--nka-yellow);transition:.25s}
+.links a:hover:after{width:100%}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.burger{display:none;font-size:30px;cursor:pointer;color:var(--nka-dark-blue)}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding-top:98px;
+  position:relative;
+  display:flex;align-items:center;
+  background:
+    linear-gradient(135deg, rgba(60,46,130,.92), rgba(0,61,202,.86)),
+    url("assets/img/hero-bg.jpg") center/cover no-repeat;
+  color:#fff;
+}
+.hero:before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(900px 420px at 20% 20%, rgba(255,199,39,.25), transparent 60%);
+  pointer-events:none;
+}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:3.1rem;line-height:1.1;font-weight:900;margin:14px 0 14px}
+.hero h1 .hl{color:var(--nka-yellow)}
+.hero p{color:rgba(255,255,255,.86);font-size:1.05rem;max-width:560px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.hero-proof{margin-top:18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.proof-chip{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(10px);font-weight:700}
+.proof-chip b{color:var(--nka-yellow)}
+.hero-card{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:0 22px 60px rgba(0,0,0,.22);
+  backdrop-filter:blur(10px);
+}
+.hero-card h3{font-size:1.1rem;margin-bottom:10px}
+.hero-card ul{list-style:none;display:grid;gap:10px}
+.hero-card li{display:flex;gap:10px;align-items:flex-start;color:rgba(255,255,255,.9)}
+.tick{
+  width:22px;height:22px;border-radius:8px;
+  background:rgba(255,199,39,.22);
+  border:1px solid rgba(255,199,39,.45);
+  display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 22px;
+}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:.7s}
+.reveal.active{opacity:1;transform:none}
+
+/* FEATURES */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap);margin-top:30px}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px;
+  border:1px solid rgba(0,0,0,.06);
+  height:100%;
+}
+.icon{
+  width:46px;height:46px;border-radius:16px;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(30,187,255,.12);
+  color:var(--nka-dark-blue);
+  font-weight:900;
+}
+.card h4{margin-top:12px;font-size:1.15rem}
+.card p{margin-top:8px;color:var(--text-light)}
+
+/* OWLEAD */
+.owlead-wrap{
+  display:grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap:clamp(18px, 2.6vw, 26px);
+  align-items:center;
+}
+.owlead-visual{
+  display:flex;align-items:center;justify-content:center;
+}
+.owlead-mascot{
+  width:320px;max-width:100%;
+  animation:owleadFloat 3.2s ease-in-out infinite;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.25));
+}
+@keyframes owleadFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.owlead-list{list-style:none;display:grid;gap:12px;margin-top:14px}
+.owlead-item{
+  background:#fff;border-radius:var(--radius-sm);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 10px 22px rgba(0,0,0,.06);
+  padding:14px 16px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.owlead-letter{
+  width:42px;height:42px;border-radius:14px;
+  background:rgba(255,199,39,.16);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:900;color:#241c54;
+  border:1px solid rgba(255,199,39,.35);
+}
+.owlead-item b{color:var(--nka-dark-blue)}
+.owlead-item span{color:var(--text-light);display:block;margin-top:3px;font-weight:600}
+
+/* TESTIMONIALS */
+.slider{
+  position:relative;
+  border-radius:var(--radius);
+}
+
+/* Desktop/tablet: 3 cards grid (no slider translate) */
+#testimonials .slider{ overflow:visible; }
+#testimonials .slides{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--grid-gap);
+  transition:transform .45s ease;
+}
+#testimonials .tcard{
+  min-width:0;
+  background:#fff;
+  padding:28px;
+  border-radius:var(--radius);
+  border:1px solid rgba(0,0,0,.06);
+}
+
+/* Mobile: carousel (1 card per view) */
+@media(max-width:900px){
+  #testimonials .slider{ overflow:hidden; }
+  #testimonials .slides{ display:flex; gap:0; }
+  #testimonials .tcard{ min-width:100%; }
+}
+.stars{letter-spacing:2px;color:var(--nka-yellow);font-size:1.05rem}
+.tname{margin-top:12px;font-weight:900;color:var(--nka-dark-blue)}
+.tmeta{color:var(--text-light);font-weight:700}
+/* controls only for mobile slider */
+.slider-controls{display:none;gap:10px;justify-content:center;margin-top:14px}
+@media(max-width:900px){
+  .slider-controls{display:flex;}
+}
+.dotbtn{
+  width:10px;height:10px;border-radius:50%;
+  border:0;background:rgba(60,46,130,.25);cursor:pointer
+}
+.dotbtn.active{background:var(--nka-yellow);transform:scale(1.2)}
+
+/* GALLERY */
+
+/* Naikkan section galeri rapat dengan HERO (kurangkan ruang kosong) */
+#gallery.section{
+  /* Keep a clean, consistent gap from HERO (no overlap) */
+  padding-top:calc(var(--section-pad) - 8px);
+  padding-bottom:calc(var(--section-pad) - 14px);
+  margin-top:0;
+}
+
+/* (Legacy grid – masih ok kalau kau guna balik) */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap);margin-top:28px}
+
+/* Carousel (hover to auto-slide) */
+.gallery-carousel{
+  margin-top:28px;
+  position:relative;
+  border-radius:18px;
+}
+.gallery-hint{
+  font-weight:800;
+  color:var(--text-light);
+  margin:0 0 10px;
+  font-size:.95rem;
+}
+.gallery-track{
+  display:flex;
+  gap:var(--grid-gap);
+  overflow:auto;
+  scroll-behavior:smooth;
+  padding:6px 2px 12px;
+  scrollbar-width:none; /* Firefox */
+}
+.gallery-track::-webkit-scrollbar{display:none}
+
+.gallery-track .gitem{
+  flex:0 0 420px;
+  max-width:420px;
+}
+
+.gitem{position:relative;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);cursor:pointer}
+.gitem img{width:100%;height:250px;object-fit:cover;transition:.35s transform}
+.gitem:hover img{transform:scale(1.08)}
+.gcap{position:absolute;inset:auto 0 0 0;padding:14px 14px;background:linear-gradient(to top, rgba(0,0,0,.65), transparent);color:#fff;font-weight:800}
+
+@media (max-width: 980px){
+  #gallery.section{margin-top:0;padding-top:calc(var(--section-pad) - 18px);padding-bottom:calc(var(--section-pad) - 24px)}
+  .gallery-track .gitem{flex:0 0 78vw;max-width:78vw}
+  .gitem img{height:220px}
+}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;z-index:2000}
+.lightbox.active{display:flex}
+.lightbox img{max-width:92vw;max-height:84vh;border-radius:16px;border:4px solid rgba(255,255,255,.85)}
+.lightbox .x{position:absolute;top:18px;right:22px;font-size:34px;color:#fff;cursor:pointer}
+
+/* STATS */
+.stats{
+  background:linear-gradient(135deg, var(--nka-purple), var(--nka-dark-blue));
+  color:#fff;
+}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--grid-gap);margin-top:26px}
+.stat{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+  height:100%;
+}
+.stat .num{font-size:2.4rem;font-weight:900;color:var(--nka-yellow)}
+.stat .lbl{font-weight:800}
+.stat .sub{color:rgba(255,255,255,.82);font-weight:600;font-size:.95rem;margin-top:6px}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap);margin-top:26px}
+.price{
+  background:#fff;border-radius:var(--radius);
+  border:1px solid rgba(0,0,0,.06);
+  box-shadow:var(--shadow);
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+  height:100%;
+}
+.price.popular:before{
+  content:"Paling Popular";
+  position:absolute;top:16px;right:-42px;
+  transform:rotate(35deg);
+  background:var(--nka-yellow);
+  color:#241c54;
+  font-weight:900;
+  padding:8px 60px;
+  font-size:.85rem;
+}
+.price h4{font-size:1.25rem}
+.price .pamt{font-size:2.1rem;font-weight:900;color:var(--nka-dark-blue);margin-top:10px}
+.price .pamt span{font-size:.95rem;color:var(--text-light);font-weight:800}
+.price ul{list-style:none;display:grid;gap:10px;margin-top:14px}
+.price li{display:flex;gap:10px;align-items:flex-start;color:var(--text-light);font-weight:700}
+.price .btn{margin-top:18px;width:100%}
+
+/* FORM */
+.form-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:var(--grid-gap);margin-top:26px;
+}
+.form{
+  background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
+  border:1px solid rgba(0,0,0,.06);
+  padding:22px;
+}
+.field{display:grid;gap:8px;margin-bottom:14px}
+label{font-weight:800;color:var(--nka-dark-blue)}
+input,select,textarea{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:2px solid rgba(0,0,0,.10);
+  outline:none;
+  font-family:inherit;
+  font-weight:700;
+}
+input:focus,select:focus,textarea:focus{border-color:rgba(30,187,255,.7);box-shadow:0 0 0 5px rgba(30,187,255,.12)}
+textarea{min-height:110px;resize:vertical}
+.form-note{color:var(--text-light);font-weight:700;font-size:.95rem}
+.success{display:none;margin-top:12px;padding:12px;border-radius:12px;background:rgba(66,173,76,.12);border:1px solid rgba(66,173,76,.28);font-weight:800;color:#2d7a35}
+
+/* FOOTER */
+.footer{background:#0f1420;color:#fff;padding:56px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px}
+.footer p{color:rgba(255,255,255,.78);margin-top:10px}
+.flinks{display:grid;gap:10px;margin-top:10px}
+.flinks a{color:rgba(255,255,255,.85);font-weight:700}
+.flinks a:hover{color:var(--nka-yellow)}
+.copy{margin-top:22px;color:rgba(255,255,255,.55);font-weight:700;font-size:.92rem;text-align:center}
+
+/* WhatsApp float */
+.wa{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  z-index:3000;
+  display:flex;gap:10px;align-items:center;
+}
+.wa a{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;
+  padding:14px 16px;border-radius:999px;
+  font-weight:900;
+  box-shadow:0 18px 40px rgba(0,0,0,.18);
+}
+.wa a:hover{filter:brightness(1.03);transform:translateY(-2px)}
+.wa .mini{
+  display:none;
+  background:rgba(0,0,0,.65);
+  color:#fff;
+  padding:10px 12px;
+  border-radius:12px;
+  font-weight:800;
+}
+.wa:hover .mini{display:block}
+
+/* Mobile nav */
+@media (max-width: 980px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-card{max-width:560px}
+  .grid-3{grid-template-columns:1fr;gap:14px}
+  .owlead-wrap{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-grid{grid-template-columns:1fr}
+  .form-wrap{grid-template-columns:1fr}
+  .links{position:fixed;top:78px;left:0;right:0;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);
+    display:none;flex-direction:column;gap:14px;padding:18px 20px;box-shadow:0 16px 40px rgba(0,0,0,.12)}
+  .links.open{display:flex}
+  .burger{display:block}
+}
+
+/* ===== NAV + HERO BADGE COLOR LOCK (fix warna bertukar) ===== */
+.nav,
+.nav a,
+.nav .brand span{
+  color:#ffffff !important;
+}
+
+.nav.scrolled,
+.nav.scrolled a,
+.nav.scrolled .brand span{
+  color:var(--nka-dark-blue) !important;
+}
+
+.hero .badge{
+  background:rgba(255,255,255,.18);
+  color:#ffffff !important;
+}
+
+.hero .badge .dot{
+  background:var(--nka-yellow);
+}
+
+.nav .btn-primary{
+  color:#241c54 !important;
+}
+
+/* --- EXTRA LAYOUT (LATEST HTML SUPPORT) --- */
+.h3{
+  font-size:1.35rem;
+  line-height:1.25;
+  font-weight:900;
+  color:var(--nka-purple);
+}
+
+.grid-5{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+  margin-top:30px;
+}
+
+/* pricing: 2-column variant */
+.pricing-grid.two{
+  grid-template-columns:repeat(2,1fr);
+}
+
+/* fee list formatting inside pricing cards */
+.fee-list{
+  list-style:none;
+  display:grid;
+  gap:10px;
+  margin-top:14px;
+  padding:0;
+}
+.fee-list .row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  color:var(--text-light);
+  font-weight:700;
+}
+.fee-list .row span{
+  flex:1;
+}
+.fee-list .row b{
+  color:var(--nka-dark-blue);
+  white-space:nowrap;
+}
+.fee-list .sep{
+  height:1px;
+  background:rgba(0,0,0,.08);
+  margin:2px 0;
+}
+
+/* AWARDS (Pencapaian & Pengiktirafan logos) */
+.award-note{
+  margin-top:22px;
+  color:rgba(255,255,255,.9);
+  font-weight:800;
+  line-height:1.7;
+}
+
+.awards-logos{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+  gap:22px;
+  align-items:center;
+}
+
+.awards-logos img{
+  max-height:90px;
+  width:auto;
+  margin:auto;
+  padding:8px 10px;
+  border-radius:14px;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(10px);
+  filter:grayscale(100%) brightness(1.1);
+  transition:.25s transform,.25s filter,.25s background;
+}
+
+.awards-logos img:hover{
+  transform:scale(1.06);
+  filter:grayscale(0%) brightness(1.15);
+  background:rgba(255,255,255,.14);
+}
+
+@media (max-width: 980px){
+  .grid-5{grid-template-columns:1fr;gap:14px}
+  .pricing-grid.two{grid-template-columns:1fr}
+}
+
+/* ===== NAV + HERO BADGE COLOR LOCK (fix warna bertukar) ===== */
+.nav,
+.nav a,
+.nav .brand span{
+  color:#ffffff !important;
+}
+
+.nav.scrolled,
+.nav.scrolled a,
+.nav.scrolled .brand span{
+  color:var(--nka-dark-blue) !important;
+}
+
+.nav .btn-primary{
+  color:#241c54 !important;
+}
+
+.hero .badge{
+  background:rgba(255,255,255,.18);
+  color:#ffffff !important;
+}
+
+.hero .badge .dot{
+  background:var(--nka-yellow);
+}
+
+
+/* REMOVE GALLERY CAPTION */
+.gcap{display:none !important;}
+
+
+/* VIDEO AKTIVITI UTAMA - CENTER & BORDER */
+.video-frame{
+  margin: 0 auto;
+  max-width: 900px;
+  border-radius: 20px;
+  padding: 10px;
+  background: linear-gradient(135deg, rgba(0,61,202,.15), rgba(255,199,39,.18));
+  box-shadow: 0 20px 50px rgba(0,0,0,.15);
+}
+
+.video-frame iframe{
+  border-radius: 14px;
+}
+
+
+
+
+#video-aktiviti .video-frame{display:block;margin-left:auto;margin-right:auto;}
+#video-aktiviti .reveal{width:100%;}
+
+
+/* OWLEAD MASCOT - SOFT BLUE + SUBTLE STARS */
+.owlead-visual{
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height: 360px;
+}
+
+.owlead-visual::before{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  /* soft glow */
+  background:
+    radial-gradient(circle at 30% 30%,
+      rgba(30,187,255,.35),
+      rgba(0,61,202,.25) 45%,
+      rgba(0,61,202,.15) 65%,
+      transparent 70%),
+    /* subtle stars/dots pattern */
+    radial-gradient(rgba(255,255,255,.55) 1px, transparent 1.6px),
+    radial-gradient(rgba(255,255,255,.35) 1px, transparent 2px);
+  background-size: auto, 26px 26px, 38px 38px;
+  background-position: center, 0 0, 10px 16px;
+  filter: blur(.1px);
+  z-index:0;
+}
+
+.owlead-mascot{
+  position:relative;
+  z-index:1;
+}
+
+@media(max-width:768px){
+  .owlead-visual{min-height: 260px;}
+  .owlead-visual::before{
+    width:260px;
+    height:260px;
+    background-size: auto, 22px 22px, 32px 32px;
+  }
+}
+
+
+/* OWLEAD MASCOT - FULL BLUE CIRCLE BACKGROUND */
+.owlead-visual::before{
+  background: radial-gradient(circle at top left,
+    #5ecbff 0%,
+    #2f6cff 45%,
+    #1e3fa9 100%);
+  opacity:1;
+}
+
+
+/* OWLEAD MASCOT - SOFT SHADOW UNDER */
+.owlead-mascot{
+  filter: drop-shadow(0 18px 22px rgba(0,0,0,0.22));
+}
+
+.owlead-visual::before{
+  box-shadow: 0 22px 35px rgba(0,0,0,0.18);
+}
+
+
+/* OWLEAD MASCOT - LIGHT BLUE FULL CIRCLE */
+.owlead-visual::before{
+  background: radial-gradient(circle at top left,
+    #cfefff 0%,
+    #9fd8ff 45%,
+    #6fb9ff 100%);
+}
+
+/* soften shadow slightly */
+.owlead-mascot{
+  filter: drop-shadow(0 14px 20px rgba(0,0,0,0.18));
+}
+
+.owlead-visual::before{
+  box-shadow: 0 18px 28px rgba(0,0,0,0.15);
+}
+
+
+/* OWLEAD MASCOT - SPLASH PAINT SHAPE */
+.owlead-visual::before{
+  background: radial-gradient(circle at 30% 30%,
+    #dff4ff 0%,
+    #a9ddff 45%,
+    #7cc4ff 100%);
+  border-radius: 42% 58% 63% 37% / 46% 44% 56% 54%;
+  transform: rotate(-8deg);
+  box-shadow: 0 22px 32px rgba(0,0,0,0.14);
+}
+
+/* optional organic animation (very subtle) */
+@keyframes splashFloat {
+  0% { transform: rotate(-8deg) translateY(0); }
+  50% { transform: rotate(-6deg) translateY(-6px); }
+  100% { transform: rotate(-8deg) translateY(0); }
+}
+
+.owlead-visual::before{
+  animation: splashFloat 8s ease-in-out infinite;
+}
+
+
+/* ===== TESTIMONI (GAMBAR ATAS + AYAT BAWAH) ===== */
+.tcard{ text-align:center; }
+.tavatar{ display:flex; justify-content:center; margin-bottom:14px; }
+.tavatar img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid var(--nka-yellow);
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
+}
+.tquote{
+  margin-top:6px;
+  font-weight:800;
+  color:var(--text-light);
+  font-size:1.05rem;
+  line-height:1.65;
+}
+
+/* ===== MINI VIDEO (1 SAHAJA) ===== */
+.mini-video-wrap{ margin-top:18px; max-width:980px; margin-inline:auto; padding:0 2px; }
+.mini-video-one{
+  width:100%;
+  height:auto;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 14px 30px rgba(0,0,0,.12);
+  background:#000;
+}
+
+
+/* --- NKAvengers Logo (center above hero info box) --- */
+.hero-right{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:14px;
+}
+
+.hero-nkavengers{
+  width:min(320px, 30vw);
+  max-width:320px;
+  pointer-events:none;
+  opacity:.95;
+}
+
+.hero-nkavengers img{
+  width:100%;
+  height:auto;
+  display:block;
+  filter: drop-shadow(0 18px 34px rgba(0,0,0,.35));
+  animation: pulseSlow 6.2s ease-in-out infinite;
+}
+
+/* keep hero-card width as before */
+.hero-right .hero-card{ width:100%; }
+
+@media (max-width: 980px){
+  .hero-nkavengers{
+    width:min(240px, 70vw);
+    opacity:.40;
+  }
+}
+
+
+/* White subtle outline for hero logo */
+.hero-nkavengers img{
+  filter:
+    drop-shadow(0 0 1px rgba(255,255,255,0.85))
+    drop-shadow(0 0 3px rgba(255,255,255,0.55))
+    drop-shadow(0 0 6px rgba(255,255,255,0.25));
+}
+
+
+/* Stronger white outline & spacing for hero logo */
+.hero-nkavengers{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.hero-nkavengers img{
+  filter:
+    drop-shadow(0 0 2px rgba(255,255,255,0.95))
+    drop-shadow(0 0 5px rgba(255,255,255,0.85))
+    drop-shadow(0 0 8px rgba(255,255,255,0.6))
+    drop-shadow(0 0 12px rgba(255,255,255,0.35));
+}
+
+
+/* Solid thin white outline for hero logo (no shadow) */
+.hero-nkavengers img{
+  filter: none;
+  -webkit-text-stroke: 0;
+  outline: none;
+}
+
+.hero-nkavengers img{
+  box-shadow:
+    0 0 0 1.5px #ffffff;
+}
+
+
+/* Shape-following thin white outline (no box) */
+.hero-nkavengers img{
+  filter:
+    drop-shadow(1px 0 0 #fff)
+    drop-shadow(-1px 0 0 #fff)
+    drop-shadow(0 1px 0 #fff)
+    drop-shadow(0 -1px 0 #fff);
+}
+
+/* Remove any box/border outline around hero logo container */
+.hero-nkavengers,
+.hero-nkavengers *{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Centered NKAvengers logo section */
+.nkavengers-section{
+  display:flex;
+  justify-content:center;
+  margin:30px 0 40px;
+}
+
+.nkavengers-section img{
+  max-width:300px;
+  width:100%;
+}
+
+
+/* Stronger & more frequent lightning animation for NKAvengers logo */
+.nkavengers-section img{
+  animation: nkavengersLightning 2.6s infinite;
+  will-change: filter, opacity, transform;
+}
+
+@keyframes nkavengersLightning{
+  0%, 70%, 100%{
+    opacity: 1;
+    transform: translateY(0);
+    filter: none;
+  }
+  /* flash 1 */
+  72%{
+    filter: brightness(1.6) contrast(1.4)
+      drop-shadow(0 0 10px rgba(255,255,255,0.95))
+      drop-shadow(0 0 24px rgba(255,215,0,0.75));
+  }
+  73%{
+    filter: none;
+  }
+  /* flash 2 */
+  76%{
+    filter: brightness(1.8) contrast(1.5)
+      drop-shadow(0 0 12px rgba(255,255,255,1))
+      drop-shadow(0 0 30px rgba(255,215,0,0.85));
+    transform: translateY(-2px);
+  }
+  77%{
+    filter: none;
+    transform: translateY(0);
+  }
+  /* mini flash */
+  82%{
+    filter: brightness(1.4)
+      drop-shadow(0 0 8px rgba(255,255,255,0.8));
+  }
+  83%{
+    filter: none;
+  }
+}
+
+  
+/* === BRAND TEXT COLOR FIX (REV12) === */
+.nav .brand,
+.nav .brand span{
+  color: var(--nka-yellow) !important;
+}
+
+/* === BRAND COLOR ALWAYS ORANGE (REV13) === */
+/* Force brand text to stay template yellow/orange in all states */
+.nav .brand,
+.nav .brand span,
+.nav.scrolled .brand,
+.nav.scrolled .brand span{
+  color: var(--nka-yellow) !important;
+}
+
+/* === BRAND COLOR STATE (REV17) === */
+/* Default (no scroll): ORANGE */
+.nav .brand,
+.nav .brand span{
+  color: var(--nka-yellow) !important;
+}
+
+/* On scroll: BLUE */
+.nav.scrolled .brand,
+.nav.scrolled .brand span{
+  color: var(--nka-dark-blue) !important;
+}
+
+/* === DUAL TESTIMONIAL VIDEO (REV19) === */
+.video-wrap.dual{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:18px;
+  align-items:stretch;
+}
+.video-wrap.dual .video-card{ width:100%; max-width:none; }
+@media(max-width:900px){
+  .video-wrap.dual{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+}
+
+/* ===== DUAL TESTIMONIAL VIDEO - VIDEO STYLE ===== */
+.video-wrap.dual video{
+  width:100%;
+  height:clamp(220px, 26vw, 360px);
+  object-fit:contain;
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 14px 30px rgba(0,0,0,.12);
+  background:#000;
+}
+@media(max-width:900px){
+  .video-wrap.dual video{ height:clamp(220px, 60vw, 360px); }
+}
+
+
+/* ===== TESTIMONIALS LAYOUT TUNING (REV19) ===== */
+#testimonials .slider,
+#testimonials .slider-controls{
+  max-width:980px;
+  margin-inline:auto;
+}
+#testimonials .tcard{ padding:26px 22px; }
+@media (max-width:560px){
+  #testimonials .tcard{ padding:22px 18px; }
+}
+
+
+
+/* ===== TIKTOK TESTIMONI FINAL FIX ===== */
+
+/* layout kekal */
+.tiktok-dual .video-card{
+  max-width:300px;
+  margin-inline:auto;
+}
+
+/* container */
+.tiktok-box{
+  background:transparent;
+  padding:0;
+  border-radius:16px;
+}
+
+/* penting: biar TikTok ikut sizing sendiri (inline style/JS) */
+.tiktok-box blockquote{
+  margin:0 !important;
+}
+/* nipis outline sahaja */
+.tiktok-box iframe{
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,.18);
+  box-shadow:none !important;
+}
+
+/* mobile stack */
+@media(max-width:900px){
+  .tiktok-dual{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+}
+
+/* ===========================
+   RESPONSIVE POLISH (REV-R)
+   (no text changes, layout only)
+   =========================== */
+
+/* Better text scaling across devices */
+.h2{font-size:clamp(1.75rem, 3.2vw, 2.45rem)}
+.hero h1{font-size:clamp(2.05rem, 4.4vw, 3.15rem)}
+.hero p{font-size:clamp(0.98rem, 1.3vw, 1.08rem)}
+.p{font-size:clamp(0.98rem, 1.15vw, 1.03rem)}
+
+/* Use modern viewport units (mobile browser bars) */
+.hero{min-height:100svh}
+
+/* Prevent horizontal overflow from embeds/cards */
+.hero-grid,
+.section,
+.footer,
+.video-wrap,
+.gallery-track{min-width:0}
+.tcard,
+.price,
+.card,
+.form{min-width:0}
+
+/* Program cards grid (HTML uses grid-6 but CSS was missing) */
+.grid-6{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:16px;
+  margin-top:30px;
+}
+@media (max-width: 980px){
+  .grid-6{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+@media (max-width: 560px){
+  .grid-6{grid-template-columns:1fr}
+}
+
+/* Hero right column: keep logo + card nicely aligned */
+.hero-right{gap:16px}
+.hero-right .hero-card{max-width:520px}
+@media (min-width: 981px){
+  .hero-right .hero-card{max-width:none}
+}
+
+/* Nav: prevent link overflow on tablet */
+@media (max-width: 1160px){
+  .links{gap:16px}
+  .nav-inner{gap:14px}
+  .nav-cta .btn{padding:12px 18px}
+}
+
+/* Mobile menu: avoid content hidden behind fixed nav */
+@media (max-width: 980px){
+  .links{max-height:calc(100svh - 78px); overflow:auto}
+}
+
+/* Gallery cards: more adaptive width on large screens */
+.gallery-track .gitem{flex:0 0 clamp(280px, 36vw, 420px); max-width:clamp(280px, 36vw, 420px)}
+
+/* TikTok: allow slightly bigger on desktop while staying neat */
+.tiktok-dual .video-card{max-width:clamp(240px, 22vw, 330px)}
+
+/* Pricing / fee list: keep numbers aligned even on small screens */
+@media (max-width: 420px){
+  .fee-list .row{flex-direction:column;gap:6px}
+  .fee-list .row b{white-space:normal}
+}
+
+/* Footer: ensure columns don't break */
+@media (max-width: 980px){
+  .footer-grid{grid-template-columns:1fr;gap:22px}
+}
+
+/* Fix: brand text color state (ensure variable exists) */
+.nav.scrolled .brand,
+.nav.scrolled .brand span{
+  color: var(--nka-dark-blue) !important;
+}
+
+/* Smoother tap experience */
+button, a{-webkit-tap-highlight-color:transparent}
+
+/* =========================================================
+   MOBILE/TABLET FIXES (REV-MT)
+   - Fix mobile menu links jadi putih (tak nampak)
+   - Restore hero logo opacity pada mobile/tablet
+   - Jadikan senarai yuran lebih 'table-like' (item + price jelas)
+   (PC view tidak diusik)
+   ========================================================= */
+
+/* 1) Mobile menu link visibility (dropdown background putih) */
+@media (max-width: 980px){
+  /* Pastikan dropdown menu readable walaupun ada color-lock putih */
+  .links{
+    background:rgba(255,255,255,.96);
+  }
+  .links a{
+    color: var(--nka-dark-blue) !important;
+    opacity: 1 !important;
+  }
+  .links a:hover{
+    color: var(--nka-light-blue) !important;
+  }
+  .links a:after{
+    background: var(--nka-yellow) !important;
+  }
+  /* Burger icon kekal jelas atas background putih */
+  .burger{ color: var(--nka-dark-blue) !important; }
+}
+
+/* 2) Hero logo jangan opacity rendah pada mobile/tablet */
+@media (max-width: 980px){
+  .hero-nkavengers{ opacity: .95 !important; }
+}
+
+/* 3) Yuran: table-like list (item kiri, harga kanan) untuk mobile/tablet */
+@media (max-width: 980px){
+  .fee-list{
+    margin-top: 14px;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .fee-list .row{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 10px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+
+  .fee-list .row span{ min-width: 0; }
+
+  .fee-list .row b{
+    justify-self: end;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .fee-list .sep{
+    height: 8px;
+    background: rgba(0,0,0,.03);
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,.06);
+  }
+
+  /* last row: buang border bawah supaya kemas */
+  .fee-list li.row:last-child{ border-bottom: 0; }
+}
+
+
+
+/* ===== TESTIMONIAL SLIDER VISIBILITY FIX ===== */
+/* Pastikan slider nampak walaupun reveal observer tak trigger (contoh: elemen flex/transform tertentu) */
+#testimonials .slider{opacity:1; transform:none;}
+/* rapatkan slider dengan heading sikit */
+#testimonials .slider{margin-top:22px;}
+#testimonials .slider-controls{margin-top:10px;}
+#testimonials .tcard{box-shadow:0 12px 30px rgba(0,0,0,.06);}
+
+
+/* ===== VIDEO RANGKUMAN AKTIVITI - CARD STYLE (REV-A) ===== */
+#video-aktiviti{
+  background:#3C2E82;
+}
+
+#video-aktiviti .badge{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+}
+
+#video-aktiviti .h2{
+  color:#ffffff;
+}
+
+#video-aktiviti .p{
+  color:rgba(255,255,255,.85);
+}
+
+#video-aktiviti .video-frame{
+  background:linear-gradient(135deg,
+    rgba(255,255,255,.18),
+    rgba(255,255,255,.08));
+  padding:14px;
+  border-radius:26px;
+  box-shadow:0 28px 60px rgba(0,0,0,.35);
+}
+
+#video-aktiviti iframe{
+  border-radius:20px;
+}
+
+
+/* ======================================================
+   VIDEO AKTIVITI – FINAL NKA SHIMMER BORDER (PRODUCTION)
+   ====================================================== */
+#video-aktiviti .video-frame{
+  position: relative;
+  padding: 16px;
+  border-radius: 28px;
+  background: linear-gradient(
+    120deg,
+    var(--nka-dark-blue),
+    var(--nka-light-blue),
+    var(--nka-yellow),
+    var(--nka-light-blue),
+    var(--nka-dark-blue)
+  );
+  background-size: 300% 300%;
+  animation: nkaBorderFlow 8s ease-in-out infinite;
+  box-shadow:
+    0 32px 70px rgba(0,0,0,.45),
+    0 0 0 1px rgba(255,255,255,.08);
+}
+
+#video-aktiviti .video-frame::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border-radius:22px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,.20),
+    rgba(255,255,255,.06)
+  );
+  backdrop-filter: blur(6px);
+  z-index:0;
+}
+
+#video-aktiviti iframe{
+  position:relative;
+  z-index:1;
+  border-radius:18px;
+}
+
+@keyframes nkaBorderFlow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+@media(max-width:768px){
+  #video-aktiviti .video-frame{
+    padding:12px;
+    border-radius:22px;
+  }
+  #video-aktiviti .video-frame::before{
+    inset:5px;
+    border-radius:18px;
+  }
+}
+
+
+/* ======================================================
+   GLOBAL CARD HOVER MOTION (REV-HOVER)
+   Applies subtle motion to all "box/card" elements
+   ====================================================== */
+
+/* Base: smoother transitions */
+.card,
+.tcard,
+.price,
+.stat,
+.owlead-item,
+.form,
+.gallery-track .gitem,
+.video-card,
+.tiktok-box,
+.video-frame{
+  transition:
+    transform .24s ease,
+    box-shadow .24s ease,
+    border-color .24s ease,
+    filter .24s ease;
+  will-change: transform;
+}
+
+/* Hover: subtle lift + shadow (desktop only feel) */
+@media (hover:hover) and (pointer:fine){
+  .card:hover,
+  .tcard:hover,
+  .price:hover,
+  .stat:hover,
+  .owlead-item:hover,
+  .form:hover,
+  .gallery-track .gitem:hover,
+  .video-card:hover,
+  .tiktok-box:hover,
+  .video-frame:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 18px 44px rgba(0,0,0,.12);
+  }
+
+  /* keep the video border effect strong but not jumpy */
+  #video-aktiviti .video-frame:hover{
+    transform: translateY(-4px);
+    box-shadow:
+      0 34px 78px rgba(0,0,0,.48),
+      0 0 0 1px rgba(255,255,255,.10);
+  }
+
+  /* OWLEAD item: slightly brighter on hover */
+  .owlead-item:hover{
+    border-color: rgba(30,187,255,.35);
+    box-shadow: 0 16px 40px rgba(0,0,0,.10);
+  }
+
+  /* Pricing cards: stronger focus */
+  .price:hover{
+    border-color: rgba(30,187,255,.22);
+    box-shadow: 0 20px 52px rgba(0,0,0,.14);
+  }
+
+  /* Stats: keep glassy vibe */
+  .stat:hover{
+    filter: brightness(1.03);
+    box-shadow: 0 22px 56px rgba(0,0,0,.22);
+  }
+}
+
+/* Touch devices: no hover jump, but keep tap feel */
+@media (hover:none){
+  .card:active,
+  .tcard:active,
+  .price:active,
+  .stat:active,
+  .owlead-item:active,
+  .form:active,
+  .gallery-track .gitem:active,
+  .video-card:active,
+  .tiktok-box:active,
+  .video-frame:active{
+    transform: translateY(-2px) scale(.995);
+  }
+}
+
+
+/* =========================================================
+   FINAL: CONSISTENT YELLOW OUTLINE (NO FILL) ON HOVER
+   Applies to all main boxes/cards.
+   ========================================================= */
+@media (hover:hover) and (pointer:fine){
+  .card:hover,
+  .tcard:hover,
+  .price:hover,
+  .stat:hover,
+  .owlead-item:hover,
+  .form:hover,
+  .gallery-track .gitem:hover,
+  .video-card:hover,
+  .tiktok-box:hover,
+  .video-frame:hover{
+    /* Single yellow outline (no double) */
+    border-color: transparent !important;
+    box-shadow:
+      0 0 0 2px rgba(255,199,39,.55),
+      0 20px 52px rgba(0,0,0,.14) !important;
+  }
+
+  /* Remove yellow outline ONLY for 2 TikTok testimonial boxes */
+  .tiktok-dual .video-card:hover,
+  .tiktok-dual .tiktok-box:hover{
+    border-color: rgba(0,0,0,.06) !important;
+    box-shadow: 0 18px 44px rgba(0,0,0,.12) !important;
+  }
+}
+
+/* keep rounded corners on hover outlines */
+.card,
+.tcard,
+.price,
+.stat,
+.owlead-item,
+.form,
+.gallery-track .gitem,
+.video-card,
+.tiktok-box,
+.video-frame{
+  border-radius: var(--radius) !important;
+  overflow: hidden;
+}
+
+/* =========================================================
+   FINAL: REMOVE "PALING POPULAR" RIBBON COMPLETELY
+   (original CSS uses single-colon :before)
+   ========================================================= */
+.price.popular:before,
+.price.popular::before,
+.price.popular:after,
+.price.popular::after{
+  content: none !important;
+  display: none !important;
+}
+
+
+/* FIX (V3): Buang overlay hover yang block interaction pada TikTok (TikTok section sahaja) */
+.tiktok-dual .video-card::before,
+.tiktok-dual .tiktok-box::before{
+  display:none !important;
+  pointer-events:none !important;
+}
+
+/* Pastikan embed berada paling atas */
+.tiktok-dual .tiktok-box,
+.tiktok-dual .tiktok-box blockquote,
+.tiktok-dual .tiktok-box iframe{
+  position: relative;
+  z-index: 5;
+}
